@@ -1,28 +1,46 @@
 import pytest
 # TODO: add necessary import
+import os
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from model import train_model, compute_model_metrics, inference
+
+
+@pytest.fixture(scope="session")
+def data():
+    """
+    Load the dataset
+    """
+    data_path = os.path.join("", "data", "census.csv")
+    df = pd.read_csv(data_path) # your code here
+    return df
 
 # TODO: implement the first test. Change the function name and input as needed
-def test_one():
+def test_data_lenght():
     """
-    # add description for the first test
+    # Test to make sure we have enough data to continue
     """
     # Your code here
-    pass
+    #pass
+    assert len(data)>32000
 
 
 # TODO: implement the second test. Change the function name and input as needed
-def test_two():
+def test_columns_count():
     """
-    # add description for the second test
+    # Test to make sure all the 15 columns are there
     """
     # Your code here
-    pass
+    #pass
+    assert data.shape[1] == 15
 
 
 # TODO: implement the third test. Change the function name and input as needed
-def test_three():
+def test_model(X_train, y_train):
     """
-    # add description for the third test
+    # Test to make sure the model used is Logistical Regression
     """
     # Your code here
-    pass
+    #pass
+    model = train_model(X_train, y_train)
+    assert isinstance(model,LogisticRegression)
