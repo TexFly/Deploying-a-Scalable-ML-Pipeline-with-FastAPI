@@ -31,8 +31,6 @@ def train_model(X_train, y_train):
 
     # Initialize the machine learning model (using Support Vector Machine as an example)
     model = LogisticRegression(max_iter=1000)
-    #model = RandomForestClassifier(n_estimators=100, max_depth=10, random_state=19)
-    #model = SVC(kernel="rbf")
 
     # Define hyperparameters to tune
     param_grid = {'C': [0.1, 1, 10, 100],
@@ -47,8 +45,6 @@ def train_model(X_train, y_train):
     # Get the best model from GridSearchCV
     best_model = grid_search.best_estimator_
     
-    #model.fit(X_train, y_train)
-
     return best_model
 
 
@@ -155,13 +151,8 @@ def performance_on_categorical_slice(
 
     """
     # TODO: implement the function
-    # X_slice, y_slice, _, _ = process_data(
-        # your code here
-        # for input data, use data in column given as "column_name", with the slice_value 
-        # use training = False
     # Get the slice of the data
     sliced_data = data[data[column_name] == slice_value]
-    #X_slice, y_slice, _, _ = process_data(sliced_data, categorical_features, label, encoder, lb, training=False)
     
     X_slice, y_slice, _, _ = process_data(
     sliced_data,
@@ -172,7 +163,7 @@ def performance_on_categorical_slice(
     training=False  
     )
     
-    #preds = # your code here to get prediction on X_slice using the inference function
+
     preds = inference(model, X_slice)
     precision, recall, fbeta = compute_model_metrics(y_slice, preds)
     return precision, recall, fbeta
