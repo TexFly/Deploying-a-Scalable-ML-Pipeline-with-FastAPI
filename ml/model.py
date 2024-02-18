@@ -169,7 +169,7 @@ def performance_on_categorical_slice(
     label=label,
     encoder=encoder,
     lb=lb,
-    training=False  # Remove the duplicate 'training' argument
+    training=False  
     )
     
     #preds = # your code here to get prediction on X_slice using the inference function
